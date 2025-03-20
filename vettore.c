@@ -127,7 +127,7 @@ void prodottoCartesianoArray(int a[], int ultimo){
 //funzione di allocazione dinamica dell'array su input buffer
 int *input_array_dyn(int *size, char *line){
   int *arr, i, ch;
-  for(i=0; line[i]!='\0'; i++){
+  for(i=0; line[i]!='\n'; i++){
     if(line[i]==' '){
       *size+=1;
     }

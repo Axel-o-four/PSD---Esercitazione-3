@@ -8,20 +8,20 @@
 #define N 100
 
 int main(){
-  int *a, taglia_a=0, *b, taglia_b=0, *c, taglia_c=0;
+  int *a, taglia_a=1, *b, taglia_b=1, *c, taglia_c=1;
   char line[N];
   //line è il buffer per l'inizializzazione dell'array
-  printf("Inserire la linea da cui leggere i valori del vettore a: ");
-  scanf("%s", line);
+  printf("\nInserire la linea da cui leggere i valori del vettore a: ");
+  fgets(line, N, stdin);
   a=input_array_dyn(&taglia_a, line);
-  printf("Inserire la linea da cui leggere i valori del vettore b: ");
-  scanf("%s", line);
+  printf("\nInserire la linea da cui leggere i valori del vettore b: ");
+  fgets(line, N, stdin);
   b=input_array_dyn(&taglia_b, line);
   c=concatena_vet(a, &taglia_a, b, &taglia_b, &taglia_c);
-  printf("Output del vettore a:");
+  printf("\n\nOutput del vettore a:");
   stampaArray(a, (taglia_a-1));
-  printf("Output del vettore b:");
+  printf("\n\nOutput del vettore b:");
   stampaArray(b, (taglia_b-1));
-  printf("Output del vettore concatenato c:");
+  printf("\n\nOutput del vettore concatenato c:");
   stampaArray(c, (taglia_c-1));
 }
