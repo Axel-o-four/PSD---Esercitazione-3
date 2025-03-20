@@ -19,7 +19,7 @@ int inizializzaArray(int a[], int taglia, int *ultimo){
   return true;
 }
 
-//Stampa tutti i valori con la loro posizione iterativamente
+//Stampa tutti i valori con la loro posizione iterativamente - Corrispondente di output_array
 void stampaArray(int a[], int ultimo){
   for(int i=0; i<=ultimo; i++){
     printf("\nElemento %d dell'array: %d", i, a[i]);
@@ -123,24 +123,40 @@ void prodottoCartesianoArray(int a[], int ultimo){
   printf("Array moltiplicati: il risultato è %d\n", prodotto);
 }
 
+//funzione di allocazione dinamica dell'array su input buffer
 int *input_array_dyn(int *size, char *line){
-  int *arr;
-  arr=(* int)malloc((*size)*sizeof(int));
-  for(int i=0; i<(*size); i++){
-    arr[i]=line[i];
+  int *arr, i;
+  for(i=0; line[i]!='\0'; i++){
+    if(line[i]==' '){
+      *size++;
+    }
+  }
+  arr=(* int)malloc(((*size)+1)*sizeof(int));
+  if(arr==NULL){
+    fprintf(stderr, "Errore allocazione dinamica dell'array");
+    exit(EXIT_FAILURE);
+  }
+  i=0;
+  while(i<size&&((sscanf(line, "%d%n", &arr[i], &ch))==1)){
+    if(*(riga+ch)=='\0'){
+      break;
+    }else{
+      i++;
+      line+=ch;
+    }
   }
   return arr;
 }
 
-int *concatena_vet(int *a, int *b, int *size_a, int *size_b){
-  int size_c, *c, i, j;
-  size_c=((*size_a)+(*size_b))+1;
+//funzione di concaatenazione degli array
+int *concatena_vet(int *a, int *size_a, int *b, int *size_b, int *size_c){
+  int *c, i, j;
+  *size_c=(*size)*2;
   c=(int *)malloc(size_c*sizeof(int));
-  for(i=0; i<(*size_a); i++){
+  for(i=0; i<(*size); i++){
     c[i]=a[i];
   }
-  i++;
-  for(j=0; j<(*size_b); j++){
+  for(j=0; j<(*size); j++){
     c[i+j]=b[j];
   }
   return c;
