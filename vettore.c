@@ -1,6 +1,7 @@
 //vettore.c contiene le funzioni specifiche alle operazioni sui vettori
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "vettore.h"
 #include "utils.h"
 
@@ -125,20 +126,20 @@ void prodottoCartesianoArray(int a[], int ultimo){
 
 //funzione di allocazione dinamica dell'array su input buffer
 int *input_array_dyn(int *size, char *line){
-  int *arr, i;
+  int *arr, i, ch;
   for(i=0; line[i]!='\0'; i++){
     if(line[i]==' '){
-      *size++;
+      *size+=1;
     }
   }
-  arr=(* int)malloc(((*size)+1)*sizeof(int));
+  arr=(int *)malloc(((*size)+1)*sizeof(int));
   if(arr==NULL){
     fprintf(stderr, "Errore allocazione dinamica dell'array");
     exit(EXIT_FAILURE);
   }
   i=0;
-  while(i<size&&((sscanf(line, "%d%n", &arr[i], &ch))==1)){
-    if(*(riga+ch)=='\0'){
+  while(i<(*size)&&((sscanf(line, "%d%n", &arr[i], &ch))==1)){
+    if(*(line+ch)=='\0'){
       break;
     }else{
       i++;
@@ -151,12 +152,12 @@ int *input_array_dyn(int *size, char *line){
 //funzione di concaatenazione degli array
 int *concatena_vet(int *a, int *size_a, int *b, int *size_b, int *size_c){
   int *c, i, j;
-  *size_c=(*size)*2;
-  c=(int *)malloc(size_c*sizeof(int));
-  for(i=0; i<(*size); i++){
+  *size_c=(*size_a)+(*size_b);
+  c=(int *)malloc((*size_c)*sizeof(int));
+  for(i=0; i<(*size_a); i++){
     c[i]=a[i];
   }
-  for(j=0; j<(*size); j++){
+  for(j=0; j<(*size_b); j++){
     c[i+j]=b[j];
   }
   return c;

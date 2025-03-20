@@ -1,6 +1,5 @@
 #include "vettore.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 //Tipi boolean per condizioni False o True
 #define true 1
@@ -25,5 +24,4 @@ int main(){
   stampaArray(b, (taglia_b-1));
   printf("Output del vettore concatenato c:");
   stampaArray(c, (taglia_c-1));
-  }
 }

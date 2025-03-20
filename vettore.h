@@ -11,4 +11,4 @@ int sommaArray(int a[], int ultimo);
 void sommaPosizioniArray(int a[], int b[], int ultimo);
 void prodottoCartesianoArray(int a[], int ultimo);
 int *input_array_dyn(int *size, char *line);
-int *concatena_vet(int *a, int *b, int *size_a, int *size_b);
+int *concatena_vet(int *a, int *size_a, int *b, int *size_b, int *size_c);
